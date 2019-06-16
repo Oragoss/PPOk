@@ -9,7 +9,6 @@ namespace PPOkNoJavascript.Controllers
 {
     public class ItemController : Controller
     {
-        //START HERE: https://www.youtube.com/watch?v=lhiIvx7jMaY&list=PL6n9fhu94yhVkdrusLaQsfERmL_Jh4XmU&index=55
         private readonly IItemManager itemManager;
 
         public ItemController(IItemManager itemManager)

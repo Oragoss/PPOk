@@ -1,7 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using PPOkNoJavascript.Interfaces;
 using PPOkNoJavascript.Models;
 using PPOkNoJavascript.ViewModels;
+using System;
 
 namespace PPOkNoJavascript.Controllers
 {
@@ -22,32 +24,16 @@ namespace PPOkNoJavascript.Controllers
             return View(model);
         }
 
-        public ViewResult Details(int? id)
-        {
-            ItemDetailsViewModel itemDetailsViewModel = new ItemDetailsViewModel()
-            {
-                Item = itemManager.GetItem(id ?? 1),
-                PageTitle = "Item Details"
-            };
-
-            return View(itemDetailsViewModel);
-        }
-
-        [HttpGet]
-        public ViewResult Create()
-        {
-            return View();
-        }
-
         [HttpPost]
         public IActionResult Create(Item item)
         {
+            item.TransactionDate = DateTime.Now;
             if (ModelState.IsValid)
             {
-                Item newItem = itemManager.Add(item);
+                itemManager.Add(item);
             }
 
-            return View();
+            return Redirect("/Item");
         }
     }
 }

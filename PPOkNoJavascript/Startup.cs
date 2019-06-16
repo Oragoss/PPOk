@@ -13,6 +13,8 @@ using Microsoft.EntityFrameworkCore;
 using PPOkNoJavascript.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using PPOkNoJavascript.Interfaces;
+using PPOkNoJavascript.Managers;
 
 namespace PPOkNoJavascript
 {
@@ -43,6 +45,7 @@ namespace PPOkNoJavascript
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddScoped<IItemManager, ItemManager>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -70,7 +73,7 @@ namespace PPOkNoJavascript
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                    template: "{controller=Item}/{action=Index}/{id?}");
             });
         }
     }

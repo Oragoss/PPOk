@@ -1,4 +1,5 @@
 ﻿using PPOkNoJavascript.Models;
+using PPOkNoJavascript.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,7 @@ namespace PPOkNoJavascript.Interfaces
     public interface IItemManager
     {
         Item GetItem(int id);
-        IEnumerable<Item> GetAllItems();
+        ItemDetailsViewModel GetAllItems();
         Item Add(Item item);
         Item Update(Item item);
         Item Delete(int id);

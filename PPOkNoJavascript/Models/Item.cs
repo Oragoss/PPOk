@@ -8,7 +8,7 @@ namespace PPOkNoJavascript.Models
     public class Item
     {
         public int Id { get; set; }
-        public float Amount { get; set; }
+        public decimal Amount { get; set; }
         public string Type { get; set; }
         public DateTime TransactionDate { get; set; }
     }

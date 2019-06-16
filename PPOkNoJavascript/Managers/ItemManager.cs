@@ -1,7 +1,7 @@
 ﻿using PPOkNoJavascript.Data;
 using PPOkNoJavascript.Interfaces;
 using PPOkNoJavascript.Models;
-using System.Collections.Generic;
+using PPOkNoJavascript.ViewModels;
 
 namespace PPOkNoJavascript.Managers
 {
@@ -32,9 +32,17 @@ namespace PPOkNoJavascript.Managers
             return item;
         }
 
-        public IEnumerable<Item> GetAllItems()
+        public ItemDetailsViewModel GetAllItems()
         {
-            return context.Items;
+            var items = context.Items;
+            ItemDetailsViewModel model = new ItemDetailsViewModel()
+            {
+                Items = items,
+                PageTitle = "Charges"
+            };
+
+
+            return model;
         }
 
         public Item GetItem(int id)

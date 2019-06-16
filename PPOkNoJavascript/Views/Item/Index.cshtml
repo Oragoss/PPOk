@@ -1,7 +1,74 @@
-﻿
+﻿@model PPOkNoJavascript.ViewModels.ItemDetailsViewModel
 @{
     ViewData["Title"] = "Index";
 }
+@*action="@Url.Action("Create", "Item")"*@
+<form class="form-inline float-right" method="post" asp-action="Create">
+    <div class="form-group mb-2">
+        <input type="text" class="form-control-plaintext bg-light" asp-for="Item.Amount" id="amount" placeholder="Charge Amount">
+    </div>
+    <div class="form-group mx-sm-3 mb-2">
+        <input type="text" class="form-control-plaintext bg-light" asp-for="Item.Type" id="type" placeholder="Charge Type">
+    </div>
+    <button type="submit" class="btn btn-primary mb-2">Submit</button>
+</form>
 
-<h1>Index</h1>
+<h1>@Model.PageTitle</h1>
 
+<table class="table table-bordered table-hover">
+    <thead class="table-dark text-dark" style="color: white !important">
+        <tr>
+            <th>
+                Amount
+            </th>
+            <th>
+                Type
+            </th>
+            <th>
+                Transaction Date
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Items.OrderByDescending(i => i.TransactionDate))
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Amount)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Type)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TransactionDate)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<table class="table table-bordered table-hover">
+    <thead class="table-dark text-dark" style="color: white !important">
+        <tr>
+            <th>
+                Type
+            </th>
+            <th>
+                Amount
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Items.OrderBy(i => i.Amount))
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Type)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Amount)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
